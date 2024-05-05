@@ -324,7 +324,7 @@ export default function Navigation() {
 
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Get free delivery on orders over $100
+          Giao hàng miễn phí cho đơn hàng có giá trị trên 200.000 ngàn đồng
         </p>
 
         <nav

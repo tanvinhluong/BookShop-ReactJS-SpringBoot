@@ -1,11 +1,14 @@
 import './App.css'
-import Navigation from './components/Navigation/Navigation'
+import Navigation from './customer/components/Navigation/Navigation'
+import HomePage from './customer/pages/HomePage/HomePage'
 
 function App() {
   return (
     <div className="">
       <Navigation />
-      <div>Home</div>
+      <div>
+        <HomePage />
+      </div>
     </div>
   )
 }
