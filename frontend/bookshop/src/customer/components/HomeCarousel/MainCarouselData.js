@@ -1,14 +1,15 @@
 export const homeCarouselData = [
   {
-    image: 'https://fast.vn/assets/banner-2023/06/banner_06_2023_0.jpg',
+    image: 'https://pos.nvncdn.com/cba2a3-7534/bn/20240425_aCR1k3kT.gif',
     path: '/bookshop/book/banner0',
   },
   {
-    image: 'https://fast.vn/assets/banner-2023/06/banner_06_2023_1_1.jpg',
+    image: 'https://pos.nvncdn.com/cba2a3-7534/bn/20240409_63dyFlGa.gif',
     path: '/bookshop/book/banner1',
   },
   {
-    image: 'https://fast.vn/assets/banner-2023/06/banner_06_2023_2.jpg',
+    image:
+      'https://pos.nvncdn.com/cba2a3-7534/bn/20220426_i1xLL6tLxnnTR6iS7Lr5Bjv7.jpg',
     path: '/bookshop/book/banner2',
   },
   {
