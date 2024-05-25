@@ -2,10 +2,12 @@ package com.bookshop.ecommerce.controller;
 
 import com.bookshop.ecommerce.config.JwtProvider;
 import com.bookshop.ecommerce.exception.UserException;
+import com.bookshop.ecommerce.model.Cart;
 import com.bookshop.ecommerce.model.User;
 import com.bookshop.ecommerce.repository.UserRepository;
 import com.bookshop.ecommerce.request.LoginRequest;
 import com.bookshop.ecommerce.response.AuthResponse;
+import com.bookshop.ecommerce.service.CartService;
 import com.bookshop.ecommerce.service.CustomUserServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +37,8 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private CustomUserServiceImplementation customUserServiceImplementation;
+    @Autowired
+    private CartService cartService;
 
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws UserException {
@@ -54,6 +58,8 @@ public class AuthController {
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
         User savedUser = userRepo.save(newUser);
+        Cart cart = cartService.createCart(newUser);
+
         Authentication authentication = new UsernamePasswordAuthenticationToken(savedUser.getEmail(),savedUser.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.generateToken(authentication);

@@ -1,8 +1,10 @@
 package com.bookshop.ecommerce.model;
 
+import com.bookshop.ecommerce.user.domain.PaymentStatus;
+
 public class PaymentDetails {
     private String paymentMethod;
-    private String status;
+    private PaymentStatus status;
     private String paymentId;
     private String razorpayPaymentLinkId;
     private String razorpayPaymentLinkReferenceId;
@@ -12,7 +14,7 @@ public class PaymentDetails {
     public PaymentDetails() {
     }
 
-    public PaymentDetails(String status, String paymentMethod, String paymentId, String razorpayPaymentLinkId, String razorpayPaymentLinkReferenceId, String razorPayPaymantLinkStatus, String razorpayPaymentId) {
+    public PaymentDetails(PaymentStatus status, String paymentMethod, String paymentId, String razorpayPaymentLinkId, String razorpayPaymentLinkReferenceId, String razorPayPaymantLinkStatus, String razorpayPaymentId) {
         this.status = status;
         this.paymentMethod = paymentMethod;
         this.paymentId = paymentId;
@@ -38,11 +40,11 @@ public class PaymentDetails {
         this.paymentMethod = paymentMethod;
     }
 
-    public String getStatus() {
+    public PaymentStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PaymentStatus status) {
         this.status = status;
     }
 

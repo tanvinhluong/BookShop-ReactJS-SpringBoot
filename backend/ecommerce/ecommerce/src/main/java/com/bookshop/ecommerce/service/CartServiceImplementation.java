@@ -47,7 +47,7 @@ public class CartServiceImplementation implements CartService {
     }
 
     @Override
-    public Cart findUserCart(Long userId) throws ProductException {
+    public Cart findUserCart(Long userId){
         Cart cart = cartRepository.findByUserId(userId);
         int totalPrice = 0;
         int totalDiscountedPrice = 0;

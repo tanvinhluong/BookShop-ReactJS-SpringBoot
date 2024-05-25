@@ -45,7 +45,7 @@ public class ProductController {
 
         List<Product> products=productService.searchProduct(q);
 
-        return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
+        return new ResponseEntity<>(products, HttpStatus.OK);
 
     }
 }

@@ -8,5 +8,5 @@ import com.bookshop.ecommerce.request.AddItemRequest;
 public interface CartService {
     public Cart createCart(User user);
     public String addToCartItem(Long UserId, AddItemRequest addItemRequest) throws ProductException;
-    public Cart findUserCart(Long userId) throws ProductException;
+    public Cart findUserCart(Long userId);
 }

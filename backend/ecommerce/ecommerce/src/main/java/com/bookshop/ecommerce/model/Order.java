@@ -1,5 +1,6 @@
 package com.bookshop.ecommerce.model;
 
+import com.bookshop.ecommerce.user.domain.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,8 +29,8 @@ public class Order {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
-    private List<OrderItems> orderItems = new ArrayList<>();
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime orderDate;
 
@@ -43,7 +45,7 @@ public class Order {
     private double totalPrice;
     private Integer totalDiscountedPrice;
     private Integer discount;
-    private String orderStatus;
+    private OrderStatus orderStatus;
 
     private int totalItem;
 
