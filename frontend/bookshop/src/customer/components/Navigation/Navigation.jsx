@@ -7,21 +7,34 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Avatar, Button, Menu, MenuItem } from '@mui/material'
 
-import { deepPurple } from '@mui/material/colors'
 import { navigationData } from './navigationData'
-import { useNavigate } from 'react-router-dom'
+import { deepPurple } from '@mui/material/colors'
+import AuthModel from '../../Auth/AuthModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser, logout } from '../../../State/Auth/Action'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navigation() {
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { auth } = useSelector((store) => store)
+  const [openAuthModal, setOpenAuthModal] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
   const openUserMenu = Boolean(anchorEl)
   const jwt = localStorage.getItem('jwt')
-  const navigate = useNavigate()
+  const location = useLocation()
+
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUser(jwt))
+    }
+  }, [jwt, auth.jwt])
 
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -30,8 +43,16 @@ export default function Navigation() {
     setAnchorEl(null)
   }
 
+  const handleOpen = () => {
+    setOpenAuthModal(true)
+    navigate('/register')
+  }
+  const handleClose = () => {
+    setOpenAuthModal(false)
+  }
+
   const handleMobileCategoryClick = (category, section, item, event) => {
-    // navigate(`/${category.id}/${section.id}/${item.id}`)
+    navigate(`/${category.id}/${section.id}/${item.id}`)
     event.stopPropagation()
     setOpen(false)
   }
@@ -39,6 +60,22 @@ export default function Navigation() {
   const handleCategoryClick = (category, section, item, close) => {
     navigate(`/${category.id}/${section.id}/${item.id}`)
     close()
+  }
+
+  useEffect(() => {
+    if (auth.user) {
+      handleClose()
+    }
+    if (location.pathname === '/login' || location.pathname === '/register') {
+      navigate(-1)
+    }
+  }, [auth.user])
+
+  const handleLogout = () => {
+    handleCloseUserMenu()
+    dispatch(logout())
+    // navigate("/");
+    window.location.reload('/')
   }
 
   return (
@@ -189,7 +226,10 @@ export default function Navigation() {
 
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
-                    <Button className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                    <Button
+                      onClick={handleOpen}
+                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                    >
                       Signin
                     </Button>
                   </div>
@@ -217,9 +257,9 @@ export default function Navigation() {
       <header className="relative bg-white">
         <p
           className="flex h-10 items-center justify-center  px-4 text-sm font-medium text-white sm:px-6 lg:px-8"
-          style={{ backgroundColor: '#ffb0bd' }}
+          style={{ backgroundColor: '#e87bc7' }}
         >
-          Giao hàng miễn phí trên hoá đơn 200.000 đồng
+          Đơn hàng trên 200.000 đồng được freeship
         </p>
 
         <nav aria-label="Top" className="mx-auto">
@@ -236,12 +276,14 @@ export default function Navigation() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <span className="sr-only">Your Company</span>
-                <img
-                  src="https://pos.nvncdn.com/cba2a3-7534/store/20240409_mNXzwl3H.png"
-                  alt="BlueFer"
-                  className="h-12 w-13 mr-3"
-                />
+                <Link to="/">
+                  <span className="sr-only">Your Company</span>
+                  <img
+                    src="https://pos.nvncdn.com/cba2a3-7534/store/20240409_mNXzwl3H.png"
+                    alt="Moji"
+                    className="h-12 w-13 mr-3"
+                  />
+                </Link>
               </div>
 
               {/* Flyout menus */}
@@ -378,7 +420,7 @@ export default function Navigation() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  {true ? (
+                  {auth.user?.firstName ? (
                     <div>
                       <Avatar
                         className="text-white"
@@ -393,7 +435,7 @@ export default function Navigation() {
                           cursor: 'pointer',
                         }}
                       >
-                        R
+                        {auth.user?.firstName[0].toUpperCase()}
                       </Avatar>
 
                       <Menu
@@ -412,11 +454,14 @@ export default function Navigation() {
                         <MenuItem onClick={() => navigate('/account/order')}>
                           My Orders
                         </MenuItem>
-                        <MenuItem>Logout</MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
                       </Menu>
                     </div>
                   ) : (
-                    <Button className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                    <Button
+                      onClick={handleOpen}
+                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                    >
                       Signin
                     </Button>
                   )}
@@ -449,6 +494,7 @@ export default function Navigation() {
           </div>
         </nav>
       </header>
+      <AuthModel handleClose={handleClose} open={openAuthModal} />
     </div>
   )
 }
