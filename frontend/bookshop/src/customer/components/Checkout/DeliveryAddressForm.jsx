@@ -1,8 +1,14 @@
 import React from 'react'
 import { Box, Button, Grid, TextField } from '@mui/material'
 import AddressCard from '../AddressCard/AddressCard'
+import { useDispatch } from 'react-redux'
+import { createOrder } from '../../../State/Order/Action'
+import { useNavigate } from 'react-router-dom'
 
 const DeliveryAddressForm = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  console.log()
   const handleSummit = (e) => {
     e.preventDefault()
     const data = new FormData(e.currentTarget)
@@ -12,9 +18,11 @@ const DeliveryAddressForm = () => {
       streetAddress: data.get('address'),
       city: data.get('city'),
       state: data.get('state'),
-      pinCode: data.get('pincode'),
+      zipCode: data.get('zipcode'),
       mobile: data.get('phoneNumber'),
     }
+    const orderData = { address, navigate }
+    dispatch(createOrder(orderData))
     console.log('address', address)
   }
   return (
@@ -98,9 +106,9 @@ const DeliveryAddressForm = () => {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     required
-                    id="pincode"
-                    name="pincode"
-                    label="Pincode"
+                    id="zipcode"
+                    name="zipcode"
+                    label="Zipcode"
                     fullWidth
                     autoComplete="shipping pin-code"
                   />

@@ -2,60 +2,82 @@ import React, { useEffect } from 'react'
 import AddressCard from '../AddressCard/AddressCard'
 import CartItem from '../Cart/CartItem'
 import { Button } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { getOrderById } from '../../../State/Order/Action'
+import { useLocation } from 'react-router-dom'
 
-const OrderSummary = () => {
+function OrderSummary() {
+  const dispatch = useDispatch()
+  const location = useLocation()
+  const { order } = useSelector((store) => store)
+  const searchParams = new URLSearchParams(location.search)
+  const orderId = searchParams.get('order_id')
+
+  useEffect(() => {
+    dispatch(getOrderById(orderId))
+  }, [orderId])
+
   return (
-    <div>
+    <div className="space-y-5">
       <div className="p-5 shadow-lg rounded-s-md border">
-        <AddressCard />
+        <AddressCard address={order.order?.shippingAddress} />
       </div>
-      <div>
-        <div className="lg:grid grid-cols-3 relative">
-          <div className="col-span-2 lg:px-5 bg-white">
-            {[1, 1, 1, 1].map((item) => (
-              <CartItem />
+
+      <div className="lg:grid grid-cols-3  relative justify-between">
+        <div className="lg:col-span-2">
+          <div className="space-y-3">
+            {order.order?.orderItems.map((item) => (
+              <>
+                <CartItem item={item} showButton={false} />
+              </>
             ))}
           </div>
-          <div className="px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0">
-            <div className="border  p-5 bg-white shadow-lg rounded-md">
-              <p className="uppercase font-bold opacity-60 pb-4">
-                Billing Details
-              </p>
-              <hr />
-              <div className="space-y-3 font-semibold mb-10">
-                <div className="flex justify-between pt-3 text-black">
-                  <span>Price</span>
-                  <span>4700$</span>
-                </div>
+        </div>
 
-                <div className="flex justify-between pt -3 text-black">
-                  <span>Discount</span>
-                  <span className="text-green-600">- 4700$</span>
-                </div>
-
-                <div className="flex justify-between pt-3 text-black">
-                  <span>Delivery Charges</span>
-                  <span className="text-green-600">Free</span>
-                </div>
-
-                <div className="flex justify-between pt-3 text-black">
-                  <span className="font-bold">Total Amount</span>
-                  <span className="font-bold ">4700$</span>
-                </div>
+        <div className="sticky top-0 h-[100vh] mt-5 lg:mt-0 ml-5">
+          <div className="border p-5 bg-white shadow-lg rounded-md">
+            <p className="uppercase font-bold opacity-60 pb-4">
+              Billing Details
+            </p>
+            <hr />
+            <div className="space-y-3 font-semibold mb-10">
+              <div className="flex justify-between pt-3 text-black">
+                <span>Price ({order.order?.totalItem} item)</span>
+                <span>{order?.order?.totalPrice} đ</span>
               </div>
-              <Button
-                variant="contained"
-                className="w-full mt-5"
-                sx={{
-                  padding: '.8rem 2rem',
-                  marginTop: '2rem',
-                  width: '100%',
-                  bgcolor: '#9155fd',
-                }}
-              >
-                Check Out
-              </Button>
+
+              <div className="flex justify-between pt-3 text-black">
+                <span>Discount</span>
+                <span className="text-green-600">
+                  -{order?.order?.discount} đ
+                </span>
+              </div>
+
+              <div className="flex justify-between pt-3 text-black">
+                <span>Delivery Charges</span>
+                <span className="text-green-600">Free</span>
+              </div>
+
+              <div className="flex justify-between pt-3 text-black">
+                <span className="font-bold">Total Amount</span>
+                <span className="font-bold ">
+                  {order?.order?.totalDiscountedPrice} đ
+                </span>
+              </div>
             </div>
+            {/* CUSTOM THÊM THANH THÊM BỚT SẢN PHẨM TRONG TRANG NÀY, REMOVE NỮA! */}
+            <Button
+              variant="contained"
+              className="w-full mt-5"
+              sx={{
+                padding: '.8rem 2rem',
+                marginTop: '2rem',
+                width: '100%',
+                bgcolor: '#9155fd',
+              }}
+            >
+              Payment
+            </Button>
           </div>
         </div>
       </div>

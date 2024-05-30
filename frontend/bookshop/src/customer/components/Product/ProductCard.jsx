@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate()
   return (
     <div
-      onClick={() => navigate(`/product/${5}`)}
+      onClick={() => navigate(`/product/${product.id}`)}
       className="productCard w-[15rem] m-3 transition-all cursor-pointer"
     >
       <div className="h-[20rem]">
@@ -20,11 +20,11 @@ const ProductCard = ({ product }) => {
           <p className="font-bold opacity-60">{product.brand}</p>
           <p className="">{product.title}</p>
 
-          <p className="font-semibold opacity-50">Trắng</p>
+          <p className="font-semibold opacity-50">{product.color}</p>
         </div>
         <div className="flex items-center space-x-2 ">
-          <p className="font-semibold">{product.discounted}</p>
-          <p className="line-through opacity-50">{product.price}</p>
+          <p className="font-semibold">{product.discountPrice} đ</p>
+          <p className="line-through opacity-50">{product.price} đ</p>
           <p className="text-green-600 font-semibold">
             {product.discountPersent}% off
           </p>
