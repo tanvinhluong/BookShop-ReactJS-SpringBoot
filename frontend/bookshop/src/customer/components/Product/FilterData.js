@@ -32,15 +32,16 @@ export const singleFilter = [
     id: 'price',
     name: 'Price',
     options: [
-      { value: '159-399', label: '₹159 To ₹399' },
-      { value: '399-999', label: '₹399 To ₹999' },
-      { value: '999-1999', label: '₹999 To ₹1999' },
-      { value: '1999-2999', label: '₹1999 To ₹2999' },
-      { value: '3999-4999', label: '₹3999 To ₹4999' },
+      { value: '1000-', label: '1999đ To 2999đ' },
+      { value: '3999-5000', label: '3999đ To 5000đ' },
+      { value: '5000-10000', label: '5000đ To 10000đ' },
+      { value: '12000-50000', label: '12000đ To 50000đ' },
+      { value: '50000-200000', label: '50000đ To 200000đ' },
+      { value: '200000-1000000', label: '200000đ To 1000000đ' },
     ],
   },
   {
-    id: 'disccout',
+    id: 'discount',
     name: 'Discount Range',
     options: [
       {

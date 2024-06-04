@@ -9,6 +9,7 @@ import ProductDetails from '../customer/components/ProductDetail/ProductDetails'
 import CheckOut from '../customer/components/Checkout/CheckOut'
 import Order from '../customer/components/Order/Order'
 import OrderDetails from '../customer/components/Order/OrderDetails'
+import About from '../customer/pages/About'
 
 const CustomerRouters = () => {
   return (
@@ -21,6 +22,7 @@ const CustomerRouters = () => {
         <Route path="/register" element={<HomePage />}></Route>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/about" element={<About />}></Route>
         <Route
           path="/:lavelOne/:lavelTwo/:lavelThree"
           element={<Product />}
