@@ -11,12 +11,12 @@ import Order from '../customer/components/Order/Order'
 import OrderDetails from '../customer/components/Order/OrderDetails'
 import About from '../customer/pages/About'
 
+
+
 const CustomerRouters = () => {
   return (
     <div>
-      <div>
-        <Navigation />
-      </div>
+      <Navigation />
       <Routes>
         <Route path="/login" element={<HomePage />}></Route>
         <Route path="/register" element={<HomePage />}></Route>
@@ -36,9 +36,7 @@ const CustomerRouters = () => {
         ></Route>
         {/* <Order /> */}
       </Routes>
-      <did>
-        <Footer />
-      </did>
+      <Footer />
     </div>
   )
 }

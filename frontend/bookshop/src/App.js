@@ -4,12 +4,15 @@ import Cart from './customer/components/Cart/Cart'
 import CheckOut from './customer/components/Checkout/CheckOut'
 import Footer from './customer/components/Footer/Footer'
 import Navigation from './customer/components/Navigation/Navigation'
-import Product from './customer/components/Product/Product'
 import ProductDetails from './customer/components/ProductDetail/ProductDetails'
 import HomePage from './customer/pages/HomePage/HomePage'
 import Order from './customer/components/Order/Order'
 import OrderDetails from './customer/components/Order/OrderDetails'
 import CustomerRouters from './Routers/CustomerRouters'
+import AdminRouters from './Routers/AdminRouters'
+
+
+
 
 function App() {
   return (
@@ -17,6 +20,7 @@ function App() {
       <div className="">
         <Routes>
           <Route path="/*" element={<CustomerRouters />}></Route>
+          <Route path="/admin/*" element={<AdminRouters />}></Route>
         </Routes>
       </div>
     </Router>
