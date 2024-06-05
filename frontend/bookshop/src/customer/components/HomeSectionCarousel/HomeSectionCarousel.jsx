@@ -43,7 +43,7 @@ const HomeSectionCarousel = ({ data }) => {
           cursor: 'pointer',
         }}
       >
-        See more
+        Xem thêm
       </Typography>
       <div className="relative p-5 ">
         <AliceCarousel

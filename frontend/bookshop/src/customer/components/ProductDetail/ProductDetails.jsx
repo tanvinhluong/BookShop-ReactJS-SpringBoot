@@ -15,8 +15,8 @@ const product = {
   price: '$192',
   href: '#',
   breadcrumbs: [
-    { id: 1, name: 'Men', href: '#' },
-    { id: 2, name: 'clothing', href: '#' },
+    { id: 1, name: 'Dụng cụ học tập', href: '#' },
+    { id: 2, name: 'Đồ dùng học tập', href: '#' },
   ],
   images: [
     {
@@ -41,16 +41,6 @@ const product = {
     { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
     { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
   ],
-  description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
-  highlights: [
-    'Hand cut and sewn locally',
-    'Dyed with our proprietary colors',
-    'Pre-washed & pre-shrunk',
-    'Ultra-soft 100% cotton',
-  ],
-  details:
-    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
 }
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
@@ -228,22 +218,6 @@ function ProductDetails() {
                 </div>
               </div>
 
-              <div className="mt-10">
-                <h3 className="text-sm font-medium text-gray-900">
-                  Highlights
-                </h3>
-
-                <div className="mt-4">
-                  <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                    {product.highlights.map((highlight) => (
-                      <li key={highlight} className="text-gray-400">
-                        <span className="text-gray-600">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
               {/* <div className="mt-10">
                 <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
@@ -257,7 +231,9 @@ function ProductDetails() {
 
         {/* Recent Raiting and reviews */}
         <section>
-          <h1 className="font-bold text-lg pb-4">Recent Review & Ratings</h1>
+          <h1 className="font-bold text-lg pb-20 pt-20">
+            Những bình luận và đánh giá hiện tại
+          </h1>
           <div className="broder p-5">
             <Grid container spacing={7}>
               <Grid item xs={7}>
@@ -269,7 +245,9 @@ function ProductDetails() {
               </Grid>
 
               <Grid item xs={5}>
-                <h1 className="text-xl font-semibold pb-2">Product Rating</h1>
+                <h1 className="text-xl font-semibold pb-2">
+                  Mức độ Đánh giá Sản phẩm
+                </h1>
                 <div className="flex items-center space-x-3">
                   <Rating
                     name="read-only"
@@ -277,7 +255,7 @@ function ProductDetails() {
                     precision={0.5}
                     readOnly
                   />
-                  <p className="opacity-60">5990 Ratings</p>
+                  <p className="opacity-60">5990 lượt đánh giá</p>
                 </div>
                 <Box className="mt-5 space-y-3">
                   <Grid container alignItems="center" gap={2}>
@@ -357,7 +335,7 @@ function ProductDetails() {
 
         {/* Similar Products */}
         <section className="pt-10">
-          <h1 className="font-bold text-xl py-5">Similar Products</h1>
+          <h1 className="font-bold text-xl py-5">Các sản phẩm tương tự</h1>
           <div className=" flex flex-wrap space-y-5">
             {mens_kurta.map((item) => (
               <HomeSectionCard product={item} />

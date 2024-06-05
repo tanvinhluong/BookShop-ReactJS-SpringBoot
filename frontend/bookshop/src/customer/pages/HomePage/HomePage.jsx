@@ -11,8 +11,6 @@ const HomePage = () => {
         <HomeSectionCarousel data={mens_kurta} />
         <HomeSectionCarousel data={mens_kurta} />
         <HomeSectionCarousel data={mens_kurta} />
-        <HomeSectionCarousel data={mens_kurta} />
-        <HomeSectionCarousel data={mens_kurta} />
       </div>
     </div>
   )

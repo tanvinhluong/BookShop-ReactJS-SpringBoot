@@ -19,7 +19,7 @@ function Footer() {
           </Typography>
           <div>
             <Button className="pb-5" variant="h6" gutterBottom>
-              About
+              <a href="/about">About</a>
             </Button>
           </div>
           <div>
