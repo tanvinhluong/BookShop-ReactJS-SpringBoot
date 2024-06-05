@@ -498,6 +498,7 @@ export default function Navigation() {
                     <span className="sr-only">items in cart, view bag</span>
                   </Button>
                 </div>
+                
               </div>
             </div>
           </div>
