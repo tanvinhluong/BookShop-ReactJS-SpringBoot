@@ -7,6 +7,8 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 const HomeSectionCarousel = ({ data }) => {
   const [activeIndex, setActiveIndex] = useState(0)
   const carouselRef = useRef(null)
+
+  
   const responsive = {
     0: { items: 1 },
     720: { items: 3 },

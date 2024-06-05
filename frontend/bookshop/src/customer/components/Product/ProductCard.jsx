@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
           className="h-full w-full object-cover object-left-top"
           src={product.imageUrl}
           alt=""
-        />
+        />  
       </div>
       <div className="textPart bg-white p-3">
         <div>
