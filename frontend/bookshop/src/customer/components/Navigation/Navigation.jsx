@@ -1,82 +1,91 @@
-import { Fragment, useEffect, useState } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
+import { Fragment, useEffect, useState } from "react";
+import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
-  MagnifyingGlassIcon,
   ShoppingBagIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
+} from "@heroicons/react/24/outline";
 
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Avatar, Button, Menu, MenuItem } from '@mui/material'
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 
-import { navigationData } from './navigationData'
-import { deepPurple } from '@mui/material/colors'
-import AuthModel from '../../Auth/AuthModal'
-import { useDispatch, useSelector } from 'react-redux'
-import { getUser, logout } from '../../../State/Auth/Action'
+import { navigationData } from "./navigationData";
+import { deepPurple } from "@mui/material/colors";
+import AuthModel from "../../Auth/AuthModal";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, logout } from "../../../State/Auth/Action";
+
+import ResultsList from "../SearchBar/ResultsList";
+import SearchBar from "../SearchBar";
+
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Navigation() {
-  const [open, setOpen] = useState(false)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { auth } = useSelector((store) => store)
-  const [openAuthModal, setOpenAuthModal] = useState(false)
-  const [anchorEl, setAnchorEl] = useState(null)
-  const openUserMenu = Boolean(anchorEl)
-  const jwt = localStorage.getItem('jwt')
-  const location = useLocation()
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { auth } = useSelector((store) => store);
+  const [openAuthModal, setOpenAuthModal] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openUserMenu = Boolean(anchorEl);
+  const jwt = localStorage.getItem("jwt");
+  const location = useLocation();
+
+  // search
+  const [results, setResults] = useState([]);
+  const [product, setProduct] = useState({});
+  const [visible, setVisible] = useState(true);
+  // search
 
   useEffect(() => {
     if (jwt) {
-      dispatch(getUser(jwt))
+      dispatch(getUser(jwt));
     }
-  }, [jwt, auth.jwt])
+  }, [jwt, auth.jwt]);
 
   const handleUserClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
   const handleCloseUserMenu = (event) => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   const handleOpen = () => {
-    setOpenAuthModal(true)
-    navigate('/register')
-  }
+    setOpenAuthModal(true);
+    navigate("/register");
+  };
   const handleClose = () => {
-    setOpenAuthModal(false)
-  }
+    setOpenAuthModal(false);
+  };
 
   const handleMobileCategoryClick = (category, section, item, event) => {
-    navigate(`/${category.id}/${section.id}/${item.id}`)
-    event.stopPropagation()
-    setOpen(false)
-  }
+    navigate(`/${category.id}/${section.id}/${item.id}`);
+    event.stopPropagation();
+    setOpen(false);
+  };
 
   const handleCategoryClick = (category, section, item, close) => {
-    navigate(`/${category.id}/${section.id}/${item.id}`)
-    close()
-  }
+    navigate(`/${category.id}/${section.id}/${item.id}`);
+    close();
+  };
 
   useEffect(() => {
     if (auth.user) {
-      handleClose()
+      handleClose();
     }
-    if (location.pathname === '/login' || location.pathname === '/register') {
-      navigate(-1)
+    if (location.pathname === "/login" || location.pathname === "/register") {
+      navigate(-1);
     }
-  }, [auth.user])
+  }, [auth.user]);
 
   const handleLogout = () => {
-    handleCloseUserMenu()
-    dispatch(logout())
+    handleCloseUserMenu();
+    dispatch(logout());
     // navigate("/");
-    window.location.reload('/')
-  }
+    window.location.reload("/");
+  };
 
   return (
     <div className="bg-white pb-10">
@@ -126,9 +135,9 @@ export default function Navigation() {
                           className={({ selected }) =>
                             classNames(
                               selected
-                                ? 'border-indigo-600 text-indigo-600'
-                                : 'border-transparent text-gray-900',
-                              'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium border-none'
+                                ? "border-indigo-600 text-indigo-600"
+                                : "border-transparent text-gray-900",
+                              "flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium border-none"
                             )
                           }
                         >
@@ -257,7 +266,7 @@ export default function Navigation() {
       <header className="relative bg-white">
         <p
           className="flex h-10 items-center justify-center  px-4 text-sm font-medium text-white sm:px-6 lg:px-8"
-          style={{ backgroundColor: '#e87bc7' }}
+          style={{ backgroundColor: "#e87bc7" }}
         >
           Đơn hàng trên 200.000 đồng được freeship
         </p>
@@ -297,9 +306,9 @@ export default function Navigation() {
                             <Popover.Button
                               className={classNames(
                                 open
-                                  ? 'border-indigo-600 text-indigo-600'
-                                  : 'border-transparent text-gray-700 hover:text-gray-800',
-                                'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
+                                  ? "border-indigo-600 text-indigo-600"
+                                  : "border-transparent text-gray-700 hover:text-gray-800",
+                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
                               )}
                             >
                               {category.name}
@@ -419,20 +428,31 @@ export default function Navigation() {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
+                {/* Search */}
+
+                <SearchBar setResults={setResults} setVisible={setVisible} />
+                {!!results.length && visible && (
+                  <ResultsList
+                    results={results}
+                    setProduct={setProduct}
+                    setVisible={setVisible}
+                  />
+                )}
+
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   {auth.user?.firstName ? (
                     <div>
                       <Avatar
                         className="text-white"
                         onClick={handleUserClick}
-                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-controls={open ? "basic-menu" : undefined}
                         aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
+                        aria-expanded={open ? "true" : undefined}
                         // onClick={handleUserClick}
                         sx={{
                           bgcolor: deepPurple[500],
-                          color: 'white',
-                          cursor: 'pointer',
+                          color: "white",
+                          cursor: "pointer",
                         }}
                       >
                         {auth.user?.firstName[0].toUpperCase()}
@@ -444,14 +464,14 @@ export default function Navigation() {
                         open={openUserMenu}
                         onClose={handleCloseUserMenu}
                         MenuListProps={{
-                          'aria-labelledby': 'basic-button',
+                          "aria-labelledby": "basic-button",
                         }}
                       >
                         <MenuItem onClick={handleCloseUserMenu}>
                           Profile
                         </MenuItem>
 
-                        <MenuItem onClick={() => navigate('/account/order')}>
+                        <MenuItem onClick={() => navigate("/account/order")}>
                           My Orders
                         </MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
@@ -465,17 +485,6 @@ export default function Navigation() {
                       Signin
                     </Button>
                   )}
-                </div>
-
-                {/* Search */}
-                <div className="flex lg:ml-6">
-                  <p className="p-2 text-gray-400 hover:text-gray-500">
-                    <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon
-                      className="h-6 w-6"
-                      aria-hidden="true"
-                    />
-                  </p>
                 </div>
 
                 {/* Cart */}
@@ -496,5 +505,5 @@ export default function Navigation() {
       </header>
       <AuthModel handleClose={handleClose} open={openAuthModal} />
     </div>
-  )
+  );
 }
