@@ -18,7 +18,7 @@ public class ShoppingFacade {
     private CartService cartService;
     private CartItemService cartItemService;
 
-    // Contructors
+    // FACADE PATTERN
     public ShoppingFacade(UserService userService, CartService cartService, CartItemService cartItemService) {
         this.userService = userService;
         this.cartService = cartService;
