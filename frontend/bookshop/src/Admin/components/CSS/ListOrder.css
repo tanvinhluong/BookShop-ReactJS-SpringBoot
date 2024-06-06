@@ -1,0 +1,49 @@
+.list-order {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.listorder-format-main {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  font-weight: bold;
+}
+
+.listorder-format-main p {
+  text-align: center;
+}
+
+.listorder-allorders {
+  margin-top: 20px;
+}
+
+.listorder-format {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.listorder-format p {
+  text-align: center;
+}
+
+.listorder-format button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.listorder-format button:hover {
+  background-color: #0056b3;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #ddd;
+}
