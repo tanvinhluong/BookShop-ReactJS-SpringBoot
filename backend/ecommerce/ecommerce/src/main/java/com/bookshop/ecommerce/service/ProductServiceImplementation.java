@@ -85,6 +85,10 @@ public class ProductServiceImplementation implements ProductService{
     @Override
     public Product updateProduct(CreateProductRequest createProductRequest, Long productId) throws ProductException {
         Product product = findProductById(productId);
+        product.setTitle(createProductRequest.getTitle());
+        product.setBrand(createProductRequest.getBrand());
+        product.setPrice(createProductRequest.getPrice());
+        product.setImageUrl(createProductRequest.getImageUrl());
         if(product.getQuantity() != 0){
             product.setQuantity(createProductRequest.getQuantity());
         }
