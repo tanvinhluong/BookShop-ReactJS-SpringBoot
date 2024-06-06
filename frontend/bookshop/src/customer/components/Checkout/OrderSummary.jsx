@@ -1,21 +1,26 @@
-import React, { useEffect } from 'react'
-import AddressCard from '../AddressCard/AddressCard'
-import CartItem from '../Cart/CartItem'
-import { Button } from '@mui/material'
-import { useDispatch, useSelector } from 'react-redux'
-import { getOrderById } from '../../../State/Order/Action'
-import { useLocation } from 'react-router-dom'
+import React, { useEffect } from "react";
+import AddressCard from "../AddressCard/AddressCard";
+import CartItem from "../Cart/CartItem";
+import { Button } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrderById } from "../../../State/Order/Action";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function OrderSummary() {
-  const dispatch = useDispatch()
-  const location = useLocation()
-  const { order } = useSelector((store) => store)
-  const searchParams = new URLSearchParams(location.search)
-  const orderId = searchParams.get('order_id')
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const { order } = useSelector((store) => store);
+  const searchParams = new URLSearchParams(location.search);
+  const orderId = searchParams.get("order_id");
+  const navigate = useNavigate();
+
+  const handlePayment = () => {
+    navigate({ search: `step=4` });
+  };
 
   useEffect(() => {
-    dispatch(getOrderById(orderId))
-  }, [orderId])
+    dispatch(getOrderById(orderId));
+  }, [orderId]);
 
   return (
     <div className="space-y-5">
@@ -61,7 +66,7 @@ function OrderSummary() {
               <div className="flex justify-between pt-3 text-black">
                 <span className="font-bold">Total Amount</span>
                 <span className="font-bold ">
-                  {order?.order?.totalDiscountedPrice} đ
+                  {order?.order?.totalDiscountedPrice}
                 </span>
               </div>
             </div>
@@ -69,11 +74,12 @@ function OrderSummary() {
             <Button
               variant="contained"
               className="w-full mt-5"
+              onClick={() => handlePayment()}
               sx={{
-                padding: '.8rem 2rem',
-                marginTop: '2rem',
-                width: '100%',
-                bgcolor: '#9155fd',
+                padding: ".8rem 2rem",
+                marginTop: "2rem",
+                width: "100%",
+                bgcolor: "#9155fd",
               }}
             >
               Payment
@@ -82,7 +88,7 @@ function OrderSummary() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default OrderSummary
+export default OrderSummary;

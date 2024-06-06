@@ -1,16 +1,42 @@
-import { Grid } from '@mui/material'
-import React from 'react'
-import OrderCard from './OrderCard'
+import { Grid } from "@mui/material";
+import React from "react";
+import OrderCard from "./OrderCard";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 const orderStatus = [
-  { label: 'On the Way', value: 'on_the_way' },
-  { label: 'Delivered', value: 'delivered' },
-  { label: 'Cancelled', value: 'cancelled' },
-  { label: 'Returned', value: 'returned' },
-]
+  { label: "On the Way", value: "on_the_way" },
+  { label: "Delivered", value: "delivered" },
+  { label: "Cancelled", value: "cancelled" },
+  { label: "Returned", value: "returned" },
+];
+
 const Order = () => {
+  const jwt = localStorage.getItem("jwt");
+  const [orders, setOrders] = useState([]);
+  const fecthData = async (value) => {
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${jwt}` },
+      };
+      const results = await axios.get(
+        `http://localhost:5454/api/orders/user`,
+        config
+      );
+      setOrders(results.data);
+      // console.log(results.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fecthData();
+  }, []);
+
   return (
     <div className="px:5 lg:px-20">
-      <Grid container sx={{ justifyContent: 'space-between' }}>
+      <Grid container sx={{ justifyContent: "space-between" }}>
         <Grid item xs={2.5}>
           <div className="h-auto shadow-lg bg-white p-5 sticky top-5">
             <h1 className="font-bold text-lg">Filter</h1>
@@ -36,14 +62,14 @@ const Order = () => {
         </Grid>
         <Grid item xs={9}>
           <div className="space-y-5">
-            {[1, 1, 1, 1, 1].map((item) => (
-              <OrderCard />
+            {orders.map((item, index) => (
+              <OrderCard order={item} />
             ))}
           </div>
         </Grid>
       </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default Order
+export default Order;
