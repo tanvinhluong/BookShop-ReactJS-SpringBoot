@@ -1,0 +1,34 @@
+.container-order-confirm {
+  text-align: center;
+  background-color: #c2ffd0;
+  padding: 100px;
+}
+
+.title-order-confirm {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.message-order-confirm {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.button-container-order-confirm {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+
+.button:hover {
+  background-color: #45a049;
+}

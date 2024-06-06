@@ -1,30 +1,30 @@
-import React from 'react'
-import { Box, Button, Grid, TextField } from '@mui/material'
-import AddressCard from '../AddressCard/AddressCard'
-import { useDispatch } from 'react-redux'
-import { createOrder } from '../../../State/Order/Action'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { Box, Button, Grid, TextField } from "@mui/material";
+import AddressCard from "../AddressCard/AddressCard";
+import { useDispatch } from "react-redux";
+import { createOrder } from "../../../State/Order/Action";
+import { useNavigate } from "react-router-dom";
 
 const DeliveryAddressForm = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  console.log()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  console.log();
   const handleSummit = (e) => {
-    e.preventDefault()
-    const data = new FormData(e.currentTarget)
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
     const address = {
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      streetAddress: data.get('address'),
-      city: data.get('city'),
-      state: data.get('state'),
-      zipCode: data.get('zipcode'),
-      mobile: data.get('phoneNumber'),
-    }
-    const orderData = { address, navigate }
-    dispatch(createOrder(orderData))
-    console.log('address', address)
-  }
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
+      streetAddress: data.get("address"),
+      city: data.get("city"),
+      state: data.get("state"),
+      zipCode: data.get("zipcode"),
+      mobile: data.get("phoneNumber"),
+    };
+    const orderData = { address, navigate };
+    dispatch(createOrder(orderData));
+    console.log("address", address);
+  };
   return (
     <div>
       <Grid container spacing={4}>
@@ -33,7 +33,7 @@ const DeliveryAddressForm = () => {
             <div className="p-5 py-7 border-b cursor-pointer">
               <AddressCard />
               <Button
-                sx={{ mt: 2, bgcolor: 'RGB(145 85 253)' }}
+                sx={{ mt: 2, bgcolor: "RGB(145 85 253)" }}
                 size="large"
                 variant="contained"
               >
@@ -127,7 +127,7 @@ const DeliveryAddressForm = () => {
 
                 <Grid item xs={12}>
                   <Button
-                    sx={{ padding: '.9rem 1.5rem', bgcolor: 'RGB(145 85 253)' }}
+                    sx={{ padding: ".9rem 1.5rem", bgcolor: "RGB(145 85 253)" }}
                     size="large"
                     variant="contained"
                     type="submit"
@@ -141,7 +141,7 @@ const DeliveryAddressForm = () => {
         </Grid>
       </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default DeliveryAddressForm
+export default DeliveryAddressForm;

@@ -1,29 +1,36 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { findProducts } from '../../State/Products/Action';
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { findProducts } from "../../State/Products/Action";
 
 const ProductsTable = () => {
-
   const dispatch = useDispatch();
-  const {products} =  useSelector(store=>store);
+  const { products } = useSelector((store) => store);
 
   console.log(products);
 
-  useEffect(()=>{
+  useEffect(() => {
     const data = {
-      colors:null,
-      minPrice:0,
-      maxPrice:10000,
-      minDiscount:0,
-      category:"mens_kurta",
-      stock:null,
-      sort:"price_low",
-      pageNumber:0,
-      pageSize:10
-    }
-    dispatch(findProducts(data))
-  },[])
+      colors: null,
+      minPrice: 0,
+      maxPrice: 10000,
+      minDiscount: 0,
+      category: "mens_kurta",
+      stock: null,
+      sort: "price_low",
+      pageNumber: 0,
+      pageSize: 10,
+    };
+    dispatch(findProducts(data));
+  }, []);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -54,7 +61,7 @@ const ProductsTable = () => {
         </TableBody>
       </Table>
     </TableContainer>
-  )
-}
+  );
+};
 
-export default ProductsTable
+export default ProductsTable;

@@ -43,32 +43,6 @@ function SearchBar({ setResults, setVisible }) {
     }
   };
 
-  // const fecthData = (value) => {
-  //   if (value.trim().length < 2) {
-  //     setResults([]);
-  //     return;
-  //   }
-
-  //   axios
-  //     .get(
-  //       `https://api.themoviedb.org/3/search/movie?query=%${value}&api_key=cfe422613b250f702980a3bbf9e90716`
-  //     )
-  //     .then((result) => {
-  //       const results = result.data.results.filter((movie) => {
-  //         return (
-  //           value &&
-  //           movie &&
-  //           movie.title &&
-  //           movie.title.toLowerCase().includes(value.toLowerCase())
-  //         );
-  //       });
-  //       setResults(results);
-  //     })
-  //     .catch((error) => {
-  //       console(error);
-  //     });
-  // };
-
   const handleChange = (value) => {
     setInput(value);
     fecthData(value);
