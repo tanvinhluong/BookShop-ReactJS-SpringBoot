@@ -15,7 +15,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p From Product p where LOWER(p.title) Like %:query% OR LOWER(p.description) Like %:query% OR LOWER(p.brand) LIKE %:query% OR LOWER(p.category.name) LIKE %:query%")
     public List<Product> searchProduct(@Param("query")String query);
 
-
+    // SELECT p From Product p Where LOWER(p.category.name)=:category
+    // SELECT c From Product c Where p.parent_category_id = c.id WHERE c.category.name =:parentcategory
+    @Query("SELECT p FROM Product p " +
+            "JOIN p.category c " +
+            "LEFT JOIN c.parentCategory pc " +
+            "WHERE (c.name = :category OR :category = '') " +
+            "AND (pc.name = :parentCategoryName OR :parentCategoryName = '')")
+    public List<Product> findByParentCategory(@Param("category") String category, @Param("parentCategoryName") String parentCategory);
 
 
     @Query("SELECT p FROM Product p " +

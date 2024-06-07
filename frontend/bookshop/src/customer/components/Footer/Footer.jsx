@@ -1,5 +1,5 @@
-import { Button, Grid, Link, Typography } from '@mui/material'
-import React from 'react'
+import { Button, Grid, Link, Typography } from "@mui/material";
+import React from "react";
 
 function Footer() {
   return (
@@ -8,8 +8,8 @@ function Footer() {
         className="bg-black text-white text-center mt-10"
         container
         sx={{
-          bgcolor: '#ffb0bd',
-          color: 'white',
+          bgcolor: "#ffb0bd",
+          color: "white",
           py: 3,
         }}
       >
@@ -18,22 +18,22 @@ function Footer() {
             Company
           </Typography>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               <a href="/about">About</a>
             </Button>
           </div>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Blog
             </Button>
           </div>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Jobs
             </Button>
           </div>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Partners
             </Button>
           </div>
@@ -44,22 +44,22 @@ function Footer() {
             Solutions
           </Typography>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Marketing
             </Button>
           </div>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Analytics
             </Button>
           </div>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Commerce
             </Button>
           </div>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Support
             </Button>
           </div>
@@ -70,12 +70,12 @@ function Footer() {
             Documentation
           </Typography>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Guides
             </Button>
           </div>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Api Status
             </Button>
           </div>
@@ -86,17 +86,17 @@ function Footer() {
             Legal
           </Typography>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Claims
             </Button>
           </div>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Privacy
             </Button>
           </div>
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5" variant="h6">
               Terms
             </Button>
           </div>
@@ -111,15 +111,15 @@ function Footer() {
           </Typography>
 
           <Typography variant="body2" component="p" align="center">
-            Icons made by{' '}
+            Icons made by{" "}
             <Link
               href="https://www.freepik.com"
               color="inherit"
               underline="always"
             >
               Freepik
-            </Link>{' '}
-            from{' '}
+            </Link>{" "}
+            from{" "}
             <Link
               href="https://www.flaticon.com/"
               color="inherit"
@@ -131,7 +131,7 @@ function Footer() {
         </Grid>
       </Grid>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

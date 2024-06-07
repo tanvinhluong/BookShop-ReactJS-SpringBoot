@@ -1,26 +1,30 @@
-import React, { useEffect } from 'react'
-import CartItem from './CartItem'
-import { Button } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCart } from '../../../State/Cart/Action'
+import React, { useEffect } from "react";
+import CartItem from "./CartItem";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCart } from "../../../State/Cart/Action";
 const Cart = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { cart } = useSelector((store) => store)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { cart } = useSelector((store) => store);
 
   useEffect(() => {
-    dispatch(getCart())
-  }, [cart.removeCartItem, cart.updateCartItem])
+    dispatch(getCart());
+  }, [cart.removeCartItem, cart.updateCartItem]);
   return (
     <div>
       {cart.cartItems.length > 0 && (
         <div className="lg:grid grid-cols-3 lg:px-16 relative">
           <div className="lg:col-span-2 lg:px-5 bg-white">
             <div className="space-y-3">
-              {cart.cart?.cartItems.map((item) => (
+              {cart.cart?.cartItems.map((item, index) => (
                 <>
-                  <CartItem item={item} showButton={true} />
+                  <CartItem
+                    item={item}
+                    index={`cartitem#${index}`}
+                    showButton={true}
+                  />
                 </>
               ))}
             </div>
@@ -58,14 +62,14 @@ const Cart = () => {
               </div>
 
               <Button
-                onClick={() => navigate('/checkout?step=2')}
+                onClick={() => navigate("/checkout?step=2")}
                 variant="contained"
                 className="w-full mt-5"
                 sx={{
-                  padding: '.8rem 2rem',
-                  marginTop: '2rem',
-                  width: '100%',
-                  bgcolor: '#9155fd',
+                  padding: ".8rem 2rem",
+                  marginTop: "2rem",
+                  width: "100%",
+                  bgcolor: "#9155fd",
                 }}
               >
                 Check Out
@@ -75,7 +79,7 @@ const Cart = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

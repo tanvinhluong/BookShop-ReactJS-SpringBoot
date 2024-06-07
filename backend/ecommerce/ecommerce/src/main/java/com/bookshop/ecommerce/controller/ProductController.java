@@ -48,4 +48,16 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
 
     }
+
+    @GetMapping("/products/searchByParentCategory")
+    public ResponseEntity<List<Product>> searchByParentCategoryHandler(@RequestParam String category, @RequestParam String parentCategory)
+    {
+
+        List<Product> products=productService.findProductByParentCategory(category,parentCategory);
+
+        return new ResponseEntity<>(products, HttpStatus.OK);
+
+    }
+
+
 }
