@@ -22,7 +22,7 @@ const Cart = () => {
                 <>
                   <CartItem
                     item={item}
-                    index={`cartitem#${index}`}
+                    key={`cartitem#${index}`}
                     showButton={true}
                   />
                 </>

@@ -91,7 +91,10 @@ const HomePage = () => {
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fecthCategory();
+    fecthAllProduct();
+  }, []);
 
   return (
     <div>
