@@ -465,7 +465,7 @@ export default function Navigation() {
                           "aria-labelledby": "basic-button",
                         }}
                       >
-                        <MenuItem onClick={handleCloseUserMenu}>
+                        <MenuItem onClick={()=> navigate("/account/profile")}>
                           Profile
                         </MenuItem>
 

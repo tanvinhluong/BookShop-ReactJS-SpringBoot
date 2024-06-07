@@ -1,0 +1,46 @@
+/* Profile.css */
+.profile-container {
+  width: 60%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.profile-container h1{
+  font-weight: bold;
+  font-size: 35px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 20px 0;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-label {
+  font-weight: bold;
+  color: #333;
+  width: 30%;
+}
+
+.profile-value {
+  color: #555;
+  width: 70%;
+  text-align: right;
+}

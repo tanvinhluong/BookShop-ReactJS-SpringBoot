@@ -1,0 +1,24 @@
+.address-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.address-card p {
+  margin: 5px 0;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.space-y-3 > * + * {
+  margin-top: 15px;
+}
+
+.space-y-1 > * + * {
+  margin-top: 5px;
+}
