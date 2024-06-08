@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './CSS/CustomersTable.css'; // Import CSS file for styling
+import './CSS/CustomersTable.css';
 
 const CustomersTable = () => {
   const [users, setUsers] = useState([]);
@@ -12,10 +12,10 @@ const CustomersTable = () => {
         headers: { Authorization: `Bearer ${jwt}` },
       };
       const response = await axios.get(
-        `http://localhost:5454/api/users/profile`,
+        `http://localhost:5454/api/users/`,
         config
       );
-      setUsers([response.data]);
+      setUsers(response.data);
       console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);

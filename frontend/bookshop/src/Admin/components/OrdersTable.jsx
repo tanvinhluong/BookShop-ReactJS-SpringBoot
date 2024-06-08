@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CSS/ListOrder.css';
 
 const OrdersTable = () => {
   const [orders, setOrders] = useState([]);
   const jwt = localStorage.getItem("jwt");
+  const navigate = useNavigate();
 
   const fetchOrders = async () => {
     try {
@@ -26,6 +28,9 @@ const OrdersTable = () => {
     fetchOrders();
   }, []);
 
+  const handleDetailsClick = (orderId) => {
+    navigate(`/admin/orders/${orderId}`);
+  };
 
   return (
     <div className='list-order'>
@@ -36,6 +41,7 @@ const OrdersTable = () => {
         <p>Total Price</p>
         <p>Order Date</p>
         <p>Order Status</p>
+        <p>Details</p>
       </div>
       <div className="listorder-allorders">
         <hr />
@@ -47,6 +53,7 @@ const OrdersTable = () => {
               <p>{order.totalPrice}</p>
               <p>{order.orderDate}</p>
               <p>{order.orderStatus}</p>
+              <button onClick={() => handleDetailsClick(order.id)}>Details</button>
             </div>
             <hr />
           </React.Fragment>

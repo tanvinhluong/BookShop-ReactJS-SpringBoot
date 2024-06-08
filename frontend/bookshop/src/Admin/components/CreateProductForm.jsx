@@ -93,6 +93,9 @@ const CreateProductForm = () => {
           <option value="Giấy">Giấy</option>
           <option value="Tập">Tập</option>
           <option value="Bút">Bút</option>
+          <option value="Thước kẻ">Thước kẻ</option>
+          <option value="Sách">Sách</option>
+          <option value="Tẩy">Tẩy</option>
         </select>
       </div>
       <div className="addproduct-itemfield">

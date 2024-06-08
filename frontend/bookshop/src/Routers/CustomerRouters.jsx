@@ -10,6 +10,7 @@ import CheckOut from '../customer/components/Checkout/CheckOut'
 import Order from '../customer/components/Order/Order'
 import OrderDetails from '../customer/components/Order/OrderDetails'
 import About from '../customer/pages/About'
+import Profile from '../customer/components/Profile/Profile'
 
 
 
@@ -30,6 +31,7 @@ const CustomerRouters = () => {
         <Route path="/product/:productId" element={<ProductDetails />}></Route>
         <Route path="/checkout" element={<CheckOut />}></Route>
         <Route path="/account/order" element={<Order />}></Route>
+        <Route path="/account/profile" element={<Profile/>}></Route>
         <Route
           path="/account/order/:orderId"
           element={<OrderDetails />}
