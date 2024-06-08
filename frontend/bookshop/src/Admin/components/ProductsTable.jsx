@@ -3,21 +3,22 @@ import axios from 'axios'
 import { useNavigate, useLocation } from 'react-router-dom'
 import cross_icon from '../../customer/components/assets/cross_icon.png'
 import './CSS/ListProduct.css'
+import { API_BASE_URL } from '../../config/apiConfig'
 
 const ProductsTable = () => {
   const [results, setResults] = useState([])
   const navigate = useNavigate()
   const jwt = localStorage.getItem('jwt')
-  const location = useLocation();
+  const location = useLocation()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const config = {
           headers: { Authorization: `Bearer ${jwt}` },
-        };
+        }
         const response = await axios.get(
-          `http://localhost:5454/api/products?color=&minPrice=0&maxPrice=1000000&minDiscount=0&category=all_products&stock=null&sort=price_low&pageNumber=0&pageSize=10`,
+          `${API_BASE_URL}/api/products?color=&minPrice=0&maxPrice=1000000&minDiscount=0&category=all_products&stock=null&sort=price_low&pageNumber=0&pageSize=10`,
           config
         )
         setResults(response.data.content)
@@ -34,11 +35,11 @@ const ProductsTable = () => {
     try {
       const config = {
         headers: { Authorization: `Bearer ${jwt}` },
-      };
+      }
       await axios.delete(
-        `http://localhost:5454/api/admin/products/${productId}/delete`,
+        `${API_BASE_URL}/api/admin/products/${productId}/delete`,
         config
-      );
+      )
       setResults(results.filter((product) => product.id !== productId))
     } catch (error) {
       console.error('Error deleting product:', error)

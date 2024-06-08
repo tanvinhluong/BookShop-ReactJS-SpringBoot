@@ -1,60 +1,61 @@
-import React from "react";
-import AddressCard from "../AddressCard/AddressCard";
-import OrderTraker from "./OrderTraker";
-import { Grid, Box, Button } from "@mui/material";
-import { deepPurple } from "@mui/material/colors";
-import StarIcon from "@mui/icons-material/Star";
-import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import React from 'react'
+import AddressCard from '../AddressCard/AddressCard'
+import OrderTraker from './OrderTraker'
+import { Grid, Box, Button } from '@mui/material'
+import { deepPurple } from '@mui/material/colors'
+import StarIcon from '@mui/icons-material/Star'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { API_BASE_URL } from '../../../config/apiConfig'
 
 const OrderDetails = () => {
-  const { orderId } = useParams();
-  const [order, setOrder] = useState([]);
-  const jwt = localStorage.getItem("jwt");
-  const navigate = useNavigate();
+  const { orderId } = useParams()
+  const [order, setOrder] = useState([])
+  const jwt = localStorage.getItem('jwt')
+  const navigate = useNavigate()
 
   const handleBack = () => {
-    navigate(-1);
-  };
+    navigate(-1)
+  }
 
   const fecthData = async (id) => {
     try {
       const config = {
         headers: { Authorization: `Bearer ${jwt}` },
-      };
+      }
       const results = await axios.get(
-        `http://localhost:5454/api/orders/${orderId}`,
+        `${API_BASE_URL}/api/orders/${orderId}`,
         config
-      );
-      setOrder(results.data);
-      console.log(results.data);
+      )
+      setOrder(results.data)
+      console.log(results.data)
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error)
     }
-  };
+  }
 
   useEffect(() => {
-    fecthData();
-  }, []);
+    fecthData()
+  }, [])
 
   return (
     <div className="px-5 lg:px-20">
       <button
         onClick={handleBack}
         style={{
-          background: "none",
-          border: "none",
-          color: "blue",
-          textDecoration: "underline",
-          cursor: "pointer",
+          background: 'none',
+          border: 'none',
+          color: 'blue',
+          textDecoration: 'underline',
+          cursor: 'pointer',
         }}
       >
         Quay lại trang trước
       </button>
       <div>
         <h1 className="font-bold text-lg py-7">
-          Địa chỉ giao hàng:{" "}
+          Địa chỉ giao hàng:{' '}
           {/* {order.shippingAddress.streetAddress +
             " - " +
             order.shippingAddress.city} */}
@@ -72,7 +73,7 @@ const OrderDetails = () => {
             item
             container
             className="shadow-xl rouded-md p-5 border"
-            sx={{ alignItems: "center", justifyContent: "space-between" }}
+            sx={{ alignItems: 'center', justifyContent: 'space-between' }}
           >
             <Grid item xs={6}>
               <div className="flex  items-center ">
@@ -101,7 +102,7 @@ const OrderDetails = () => {
                   className="flex items-center cursor-pointer"
                 >
                   <StarIcon
-                    sx={{ fontSize: "2rem" }}
+                    sx={{ fontSize: '2rem' }}
                     className="px-2 text-5xl"
                   />
                   <span>Rate & Review Product</span>
@@ -112,7 +113,7 @@ const OrderDetails = () => {
         ))}
       </Grid>
     </div>
-  );
-};
+  )
+}
 
-export default OrderDetails;
+export default OrderDetails

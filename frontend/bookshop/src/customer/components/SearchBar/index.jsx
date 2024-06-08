@@ -1,16 +1,16 @@
-import "./SearchBar.css";
-import axios from "axios";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
-
+import './SearchBar.css'
+import axios from 'axios'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react'
+import { API_BASE_URL } from '../../../config/apiConfig'
 function SearchBar({ setResults, setVisible }) {
-  const [input, setInput] = useState("");
-  const jwt = localStorage.getItem("jwt");
+  const [input, setInput] = useState('')
+  const jwt = localStorage.getItem('jwt')
 
   const fecthData = async (value) => {
     if (value.trim().length < 2) {
-      setResults([]);
-      return;
+      setResults([])
+      return
     }
 
     try {
@@ -19,12 +19,12 @@ function SearchBar({ setResults, setVisible }) {
       // };
       const config = {
         headers: { Authorization: `Bearer ${jwt}` },
-      };
+      }
       const results = await axios.get(
-        `http://localhost:5454/api/products/search?q=${value}`,
+        `${API_BASE_URL}/api/products/search?q=${value}`,
         config
-      );
-      setResults(results.data);
+      )
+      setResults(results.data)
       // .then((result) => {
       //   const results = result.data.results.filter((product) => {
       //     return (
@@ -39,15 +39,15 @@ function SearchBar({ setResults, setVisible }) {
 
       // console.log(response.data[1].title + "hehe");
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error)
     }
-  };
+  }
 
   const handleChange = (value) => {
-    setInput(value);
-    fecthData(value);
-    setVisible(true);
-  };
+    setInput(value)
+    fecthData(value)
+    setVisible(true)
+  }
 
   return (
     <div className="container-search">
@@ -58,15 +58,15 @@ function SearchBar({ setResults, setVisible }) {
         onFocus={() => setVisible(true)}
         onBlur={() => {
           setTimeout(() => {
-            setVisible(false);
-          }, 125);
+            setVisible(false)
+          }, 125)
         }}
       />
       <button className="search-button">
         <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
       </button>
     </div>
-  );
+  )
 }
 
-export default SearchBar;
+export default SearchBar

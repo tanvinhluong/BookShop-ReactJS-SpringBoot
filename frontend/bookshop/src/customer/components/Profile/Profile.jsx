@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './Profile.css';
-
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import './Profile.css'
+import { API_BASE_URL } from '../../../config/apiConfig'
 const Profile = () => {
-  const [user, setUser] = useState({});
-  const jwt = localStorage.getItem("jwt");
+  const [user, setUser] = useState({})
+  const jwt = localStorage.getItem('jwt')
 
   const fetchData = async () => {
     try {
       const config = {
         headers: { Authorization: `Bearer ${jwt}` },
-      };
+      }
       const response = await axios.get(
-        `http://localhost:5454/api/users/profile`,
+        `${API_BASE_URL}/api/users/profile`,
         config
-      );
-      setUser(response.data);
+      )
+      setUser(response.data)
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   return (
     <div className="profile-container">
@@ -43,7 +43,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Profile;
+export default Profile
