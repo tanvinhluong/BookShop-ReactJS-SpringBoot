@@ -1,30 +1,30 @@
-import { Button, Grid, TextField } from "@mui/material";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { getUser, login } from "../../State/Auth/Action";
+import { Button, Grid, TextField } from '@mui/material'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { getUser, login } from '../../State/Auth/Action'
 
 const LoginHome = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { auth } = useSelector((store) => store);
-  const jwt = localStorage.getItem("jwt");
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { auth } = useSelector((store) => store)
+  const jwt = localStorage.getItem('jwt')
   useEffect(() => {
     if (jwt) {
-      dispatch(getUser(jwt));
+      dispatch(getUser(jwt))
     }
-  }, [jwt]);
+  }, [jwt])
   const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    event.preventDefault()
+    const data = new FormData(event.currentTarget)
 
     const userData = {
-      email: data.get("email"),
-      password: data.get("password"),
-    };
-    console.log("user login", userData);
-    dispatch(login(userData));
-  };
+      email: data.get('email'),
+      password: data.get('password'),
+    }
+    console.log('user login', userData)
+    dispatch(login(userData))
+  }
 
   return (
     <div>
@@ -48,6 +48,7 @@ const LoginHome = () => {
               label="Password"
               fullWidth
               autoComplete="password"
+              type="password"
             />
           </Grid>
           <Grid item xs={12}>
@@ -56,7 +57,7 @@ const LoginHome = () => {
               type="submit"
               variant="contained"
               size="large"
-              sx={{ padding: ".8rem 0", bgcolor: "#e87bc7" }}
+              sx={{ padding: '.8rem 0', bgcolor: '#e87bc7' }}
             >
               Login
             </Button>
@@ -67,7 +68,7 @@ const LoginHome = () => {
         <div className="py-3 flex items-center">
           <p>If you don't have account?</p>
           <Button
-            onClick={() => navigate("/register")}
+            onClick={() => navigate('/register')}
             className="ml-5"
             size="small"
           >
@@ -76,7 +77,7 @@ const LoginHome = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginHome;
+export default LoginHome
