@@ -50,7 +50,7 @@ function SearchBar({ setResults, setVisible }) {
   }
 
   return (
-    <div className="container-search">
+    <div className="container-search mr-4">
       <input
         spellCheck="false"
         value={input}

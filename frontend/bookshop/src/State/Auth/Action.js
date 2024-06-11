@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_BASE_URL } from "../../config/apiConfig";
+import { ToastContainer, toast } from "react-toastify";
 import {
   GET_USER_FAILURE,
   GET_USER_REQUEST,
@@ -53,13 +54,17 @@ export const login = (userData) => async (dispatch) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/auth/signin`, userData);
     const user = response.data;
+    if (response.status === 200 && !user.jwt) {
+      alert("Sai tài khoản hoặc mật khẩu");
+      return;
+    }
+
     if (user.jwt) {
       localStorage.setItem("jwt", user.jwt);
     }
-
     console.log("Login response:", response); // Log response here
     dispatch(loginSuccess(user.jwt, response.data.message));
-    window.location.reload();
+    window.location.reload()
   } catch (error) {
     dispatch(loginFailure(error.message));
   }

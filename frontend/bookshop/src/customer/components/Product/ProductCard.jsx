@@ -6,11 +6,12 @@ const ProductCard = ({ product }) => {
   return (
     <div
       onClick={() => navigate(`/product/${product.id}`)}
-      className="productCard w-[15rem] m-3 transition-all cursor-pointer"
+      className="productCard w-[15rem] m-3 transition-all cursor-pointer p-5  "
+      style={{border: "1px solid #333333", borderRadius: "20px" }}
     >
-      <div className="h-[20rem]">
+      <div className="h-[12rem]">
         <img
-          className="h-full w-full object-cover object-left-top"
+          className="h-full w-full object-cover "
           src={product.imageUrl}
           alt=""
         />  

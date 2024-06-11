@@ -58,7 +58,7 @@ const HomeSectionCarousel = ({ data, categoryName }) => {
   ))
 
   return (
-    <div className="relative px-4 sm:px-6 lg:px-8 ">
+    <div className="relative px-4 sm:px-6 lg:px-8">
       <Typography
         variant="h5"
         component="h2"
@@ -66,12 +66,12 @@ const HomeSectionCarousel = ({ data, categoryName }) => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          cursor: 'pointer',
+          marginBottom: "20px"          
         }}
       >
         {categoryName ? categoryName : 'Sản Phẩm'}
       </Typography>
-      <div className="relative p-5 ">
+      <div className="relative p-5 shadow-black shadow-md ">
         <AliceCarousel
           items={items}
           disableButtonsControls
@@ -90,7 +90,7 @@ const HomeSectionCarousel = ({ data, categoryName }) => {
             sx={{
               position: 'absolute',
               top: '8rem',
-              right: '0rem',
+              right: '-3rem',
               transform: 'translateX(50%) rotate(90deg)',
               bgcolor: 'white',
             }}
@@ -110,7 +110,7 @@ const HomeSectionCarousel = ({ data, categoryName }) => {
             sx={{
               position: 'absolute',
               top: '8rem',
-              left: '0rem',
+              left: '-3rem',
               transform: 'translateX(-50%) rotate(90deg)',
               bgcolor: 'white',
             }}

@@ -98,17 +98,14 @@ const HomePage = () => {
     <div>
       <MainCarousel />
       <div
-        className="category-select"
+        className="category-select p-4 flex items-center "
         style={{
-          display: 'flex',
-          flexDirection: 'row',
           fontSize: '1.5rem',
           backgroundColor: 'pink',
         }}
       >
-        <div>Chọn Danh Mục: </div>
-        <select value={category[selectedIndex]} onChange={handleComboBoxChange}>
-          {/* Đổ dữ liệu từ mảng vào combo box */}
+        <div className='mr-2'>Chọn Danh Mục: </div>
+        <select className='rounded-full w-20'  value={category[selectedIndex]} onChange={handleComboBoxChange}>
           {category.map((option, index) => (
             <option key={'combo#' + index}>{option}</option>
           ))}

@@ -305,7 +305,7 @@ export default function Product() {
             </div>
           </div>
 
-          <section aria-labelledby="products-heading" className="pb-24 pt-6">
+          <section aria-labelledby="products-heading" className=" pt-6">
             <h2 id="products-heading" className="sr-only">
               Products
             </h2>
@@ -444,7 +444,7 @@ export default function Product() {
 
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
-                <div className="flex flex-wrap justify-center bg-white py-5">
+                <div className="flex flex-wrap bg-white py-5">
                   {products?.products?.content?.map((item) => (
                     <ProductCard product={item} />
                   ))}

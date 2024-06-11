@@ -17,7 +17,7 @@ import AdminRouters from './Routers/AdminRouters'
 function App() {
   return (
     <Router>
-      <div className="">
+      <div className="container 2xl m-auto">
         <Routes>
           <Route path="/*" element={<CustomerRouters />}></Route>
           <Route path="/admin/*" element={<AdminRouters />}></Route>
