@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './CSS/ListOrder.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./CSS/ListOrder.css";
 
 const OrdersTable = () => {
   const [orders, setOrders] = useState([]);
@@ -12,7 +12,7 @@ const OrdersTable = () => {
         headers: { Authorization: `Bearer ${jwt}` },
       };
       const response = await axios.get(
-        'http://localhost:5454/api/admin/orders/',
+        "http://localhost:5454/api/admin/orders/",
         config
       );
       setOrders(response.data);
@@ -26,9 +26,8 @@ const OrdersTable = () => {
     fetchOrders();
   }, []);
 
-
   return (
-    <div className='list-order'>
+    <div className="list-order">
       <h1>All Orders List</h1>
       <div className="listorder-format-main">
         <p>Order ID</p>
@@ -39,21 +38,22 @@ const OrdersTable = () => {
       </div>
       <div className="listorder-allorders">
         <hr />
-        {!!orders && orders.map((order, index) => (
-          <React.Fragment key={index}>
-            <div className="listorder-format-main listorder-format">
-              <p>{order.id}</p>
-              <p>{order.totalItem}</p>
-              <p>{order.totalPrice}</p>
-              <p>{order.orderDate}</p>
-              <p>{order.orderStatus}</p>
-            </div>
-            <hr />
-          </React.Fragment>
-        ))}
+        {!!orders &&
+          orders.map((order, index) => (
+            <React.Fragment key={index}>
+              <div className="listorder-format-main listorder-format">
+                <p>{order.id}</p>
+                <p>{order.totalItem}</p>
+                <p>{order.totalPrice}</p>
+                <p>{order.orderDate}</p>
+                <p>{order.orderStatus}</p>
+              </div>
+              <hr />
+            </React.Fragment>
+          ))}
       </div>
     </div>
   );
-}
+};
 
 export default OrdersTable;

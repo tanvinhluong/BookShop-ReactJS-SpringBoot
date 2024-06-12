@@ -35,10 +35,10 @@ function CartItem({ item, showButton }) {
         </div>
         <div className="m-5 space-y-1">
           <p className="font-semibold">{item?.product?.title}</p>
-          <p className="opacity-70">
+          {/* <p className="opacity-70">
             Size: {item?.size},{item?.product?.color}
-          </p>
-          <p className="opacity-70 mt-2">Seller:{item?.product?.brand}</p>
+          </p> */}
+          <p className="opacity-70 mt-2">Thương hiệu: {item?.product?.brand}</p>
 
           <div className="flex space-x-5 items-center  text-gray-900 pt-6">
             <p className="font-semibold">{item?.product?.discountPrice} đ</p>
