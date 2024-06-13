@@ -16,7 +16,7 @@ import Profile from '../customer/components/Profile/Profile'
 
 const CustomerRouters = () => {
   return (
-    <div>
+    <div className='2xl'>
       <Navigation />
       <Routes>
         <Route path="/login" element={<HomePage />}></Route>

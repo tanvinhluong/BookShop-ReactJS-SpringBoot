@@ -16,7 +16,8 @@ const MainCarousel = () => (
           <img
             src={item.image}
             alt={`Slide ${index + 1}`}
-            style={{ maxWidth: '100%', height: 'auto' }}
+            style={{ width: '100%', height: 'auto' }}
+            className="w-full h-auto"
           />
         </a>
       </div>

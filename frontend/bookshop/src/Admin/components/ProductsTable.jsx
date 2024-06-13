@@ -32,18 +32,22 @@ const ProductsTable = () => {
   }, [jwt])
 
   const handleDelete = async (productId) => {
-    try {
-      const config = {
-        headers: { Authorization: `Bearer ${jwt}` },
+    const conFirmDelete = window.confirm("Bạn có muốn xóa không?")
+    if (conFirmDelete) {
+      try {
+        const config = {
+          headers: { Authorization: `Bearer ${jwt}` },
+        }
+        await axios.delete(
+          `${API_BASE_URL}/api/admin/products/${productId}/delete`,
+          config
+        )
+        setResults(results.filter((product) => product.id !== productId))
+      } catch (error) {
+        console.error('Error deleting product:', error)
       }
-      await axios.delete(
-        `${API_BASE_URL}/api/admin/products/${productId}/delete`,
-        config
-      )
-      setResults(results.filter((product) => product.id !== productId))
-    } catch (error) {
-      console.error('Error deleting product:', error)
     }
+    
   }
 
   const handleEdit = (productId) => {
@@ -85,6 +89,7 @@ const ProductsTable = () => {
                   src={cross_icon}
                   alt=""
                   className="listproduct-remove-icon"
+                  data-id = {result.id}
                 />
                 <button onClick={() => handleEdit(result.id)}>EDIT</button>
               </div>
